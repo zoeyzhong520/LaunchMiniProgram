@@ -1,0 +1,6 @@
+framework module Pods_LaunchMiniProgram {
+  umbrella header "Pods-LaunchMiniProgram-umbrella.h"
+
+  export *
+  module * { export * }
+}

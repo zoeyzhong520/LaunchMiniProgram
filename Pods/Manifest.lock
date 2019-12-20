@@ -1,4 +1,7 @@
 PODS:
+  - HandyJSON (5.0.0)
+  - Kingfisher (4.10.1)
+  - SVProgressHUD (2.2.5)
   - UMCCommon (2.1.1)
   - UMCShare/Core (6.9.6):
     - UMCCommon
@@ -11,17 +14,26 @@ PODS:
     - UMCShare/Social/ReducedWeChat
 
 DEPENDENCIES:
+  - HandyJSON
+  - Kingfisher (= 4.10.1)
+  - SVProgressHUD
   - UMCShare/Social/WeChat
 
 SPEC REPOS:
   trunk:
+    - HandyJSON
+    - Kingfisher
+    - SVProgressHUD
     - UMCCommon
     - UMCShare
 
 SPEC CHECKSUMS:
+  HandyJSON: 992f2d661716d6a91de82d0056927bc7813b5770
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
 
-PODFILE CHECKSUM: 7034c552debd2840578b75bf238347303f265576
+PODFILE CHECKSUM: 6bd4159db3cf9d891b97809a40e735628357db7b
 
 COCOAPODS: 1.8.4

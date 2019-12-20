@@ -8,9 +8,6 @@
 
 import UIKit
 
-///小程序回调通知
-let WXMiniProgramResqNotification = "WXMiniProgramResqNotification"
-
 ///默认边距
 let defaultMargin: CGFloat = 20
 

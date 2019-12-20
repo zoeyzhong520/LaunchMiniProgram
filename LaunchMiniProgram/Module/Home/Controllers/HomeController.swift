@@ -8,11 +8,9 @@
 
 import UIKit
 
-private let reuseIdentifier = "cellID"
-
 class HomeController: BaseViewController {
     
-    private let tableView = UITableView()
+    private let tableView = BaseTableView()
     private let dataSource = ["拉起小程序首页", "拉起小程序指定页面"]
     
     override func viewDidLoad() {
@@ -25,11 +23,32 @@ class HomeController: BaseViewController {
 extension HomeController {
     private func setUI() {
         tableView.frame = view.bounds
-        tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: BaseTableViewCell.LaunchMiniProgram_reuseIdentifier)
         view.addSubview(tableView)
+        
+        createFooterView()
+    }
+    
+    private func createFooterView() {
+        if !StorageServiceManager.default.isCached {
+            return
+        }
+        let footer = UIButton(frame: CGRect(x: defaultMargin, y: UIScreen.height-34-40, width: UIScreen.width-defaultMargin*2, height: 40), backgroundColor: .white)
+        footer.setTitle("查看本地JSON", for: .normal)
+        footer.setTitleColor(.black, for: .normal)
+        footer.setTitleColor(.gray, for: .highlighted)
+        footer.layer.masksToBounds = true
+        footer.layer.cornerRadius = 20
+        footer.layer.borderColor = UIColor.lightGray.cgColor
+        footer.layer.borderWidth = 0.3
+        footer.addTarget(self, action: #selector(checkCachedJSON), for: .touchUpInside)
+        view.addSubview(footer)
+    }
+    
+    @objc private func checkCachedJSON() {
+        HomeServiceManager.checkCachedJSON()
     }
 }
 
@@ -39,14 +58,13 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) else {
-            fatalError("dequeue reusable cell failed with identifier \(reuseIdentifier)")
-        }
-        cell.textLabel?.text = dataSource[indexPath.row]
+        let cell = BaseTableViewCell.createCell(tableView: tableView)
+        cell.leftText = dataSource[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
             UIViewController.isWXAppSupport()
             //拉起小程序首页

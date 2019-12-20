@@ -17,6 +17,11 @@ class HomeServiceManager {
         req?.miniProgramType = .test
         WXApi.send(req)
     }
+    
+    ///检查本地JSON缓存
+    static func checkCachedJSON() {
+        ResultServiceManager.showResultController(jsonString: StorageServiceManager.default.cachedJSON)
+    }
 }
 
 extension HomeServiceManager {

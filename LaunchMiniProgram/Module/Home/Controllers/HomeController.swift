@@ -39,10 +39,7 @@ extension HomeController {
         footer.setTitle("查看本地JSON", for: .normal)
         footer.setTitleColor(.black, for: .normal)
         footer.setTitleColor(.gray, for: .highlighted)
-        footer.layer.masksToBounds = true
-        footer.layer.cornerRadius = 20
-        footer.layer.borderColor = UIColor.lightGray.cgColor
-        footer.layer.borderWidth = 0.3
+        footer.setBorderStyle(borderWidth: 0.3, borderColor: UIColor.lightGray.cgColor, cornerRadius: 20)
         footer.addTarget(self, action: #selector(checkCachedJSON), for: .touchUpInside)
         view.addSubview(footer)
     }
